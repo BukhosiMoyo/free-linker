@@ -2,4 +2,4 @@ from django.shortcuts import render
 
 
 def HomeView(request):
-    return render(request, "home.html")
+    return render(request, "freelinks/home.html")
