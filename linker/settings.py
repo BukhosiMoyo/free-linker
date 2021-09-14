@@ -37,7 +37,33 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    
+    #Third party apps
+    'allauth',
+    'allauth.account',
+    
+    #Local apps
+    'freelinks.apps.FreelinksConfig',
+    
 ]
+
+# Django allauth config 
+
+SITE_ID = 1 #
+
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+)
+
+# Email Backend
+
+EMAIL_BACKEND = 'django.core.mail.backends.EmailBackend'
+
+LOGIN_REDIRECT_URL = 'home'
+
+ACCOUNT_LOGOUT_REDIRECT = 'home'
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
