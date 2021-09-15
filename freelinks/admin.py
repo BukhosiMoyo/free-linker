@@ -7,8 +7,10 @@ class LinkAdmin(admin.ModelAdmin):
     
 admin.site.register(Link, LinkAdmin)
 
-
-admin.site.register(LinkProject)
+class LinkPrejectAdmin(admin.ModelAdmin):
+    prepopulated_fields = {"slug": ("project_name",)}
+    
+admin.site.register(LinkProject, LinkPrejectAdmin)
 
 
 class ProfileAdmin(admin.ModelAdmin):
