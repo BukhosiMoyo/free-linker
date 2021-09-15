@@ -6,6 +6,23 @@ Projectas
 
 {% block content %}
 
-This is a list of all the projects
+<p class="">My Links</p>
+
+
+<ul>
+{% for link in project_links %}
+    <li>
+        {{link.name}}
+    </li>
+{% endfor %}
+
+
+<form action="" method="post">
+    {% csrf_token %}
+    {{form.as_p}}
+
+    <input type="submit" value="submit">
+</form>
+</ul>
 
 {% endblock content %}
