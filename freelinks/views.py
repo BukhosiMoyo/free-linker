@@ -1,6 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Link, LinkProject
 from django.views.generic import ListView
+from .forms import LinkCreateForm
+
 
 
 def HomeView(request):
@@ -8,10 +10,23 @@ def HomeView(request):
 
 
 def LinkProjectView(request, projects):
-    project_links = Link.objects.filter(project__slug=projects)    
+    project_links = Link.objects.filter(project__slug=projects)
+    form = LinkCreateForm()
+    
+    if request.method == "POST":
+        form = LinkCreateForm(request.POST)
+        if form.is_valid():
+            print(projects)
+            # TODO BUG
+            form.project = projects
+            
+            form.save()
+        return redirect("/") 
+    
     context = {
         "project": projects,
-        "project_links": project_links
+        "project_links": project_links,
+        "form": form
     }
     
     return render(request, "freelinks/projects.html", context)
