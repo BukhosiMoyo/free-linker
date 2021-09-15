@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth import get_user_model
+from django.urls import reverse
 
 
 class Profile(models.Model):
@@ -15,9 +16,13 @@ class Profile(models.Model):
 class LinkProject(models.Model):
     """A user can have different link projects that can be activated at anytime"""
     project_name = models.CharField(max_length=20, blank=True, null=True)
+    slug = models.CharField(max_length=200, blank=True, null=True)
     
     def __str__(self):
         return self.project_name
+    
+    def get_absolute_url(self):
+        return reverse('projects', kwargs={'slug': self.slug})
 
 
 class Link(models.Model):
