@@ -6,4 +6,7 @@ class LinkCreateForm(ModelForm):
     
     class Meta:
         model = Link
-        fields = ('name', 'link')
+        fields = ('name', 'link', 'project',)
+        
+        
+            
