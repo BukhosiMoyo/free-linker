@@ -10,12 +10,13 @@ Projectas
 
 
 <ul>
-{% for link in project_links %}
+{% for link in projects %}
     <li>
         {{link.name}}
     </li>
 {% endfor %}
 
+</ul>
 
 <form action="" method="post">
     {% csrf_token %}
@@ -23,6 +24,5 @@ Projectas
 
     <input type="submit" value="submit">
 </form>
-</ul>
 
 {% endblock content %}
