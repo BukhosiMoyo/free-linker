@@ -1,12 +1,12 @@
-from django.forms import ModelForm
+from django import forms
 from .models import Link
 
 
-class LinkCreateForm(ModelForm):
+class LinkCreateForm(forms.ModelForm):
     
     class Meta:
         model = Link
-        fields = ('name', 'link', 'project',)
+        fields = ('name', 'link')
         
         
             
