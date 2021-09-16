@@ -15,7 +15,7 @@ class Profile(models.Model):
 
 class LinkProject(models.Model):
     """A user can have different link projects that can be activated at anytime"""
-    project_name = models.CharField(max_length=20, blank=True, null=True)
+    project_name = models.CharField(max_length=20, unique=True, db_index=True, blank=True, null=True)
     slug = models.SlugField(max_length=20, blank=True, null=True)
     
     def __str__(self):
