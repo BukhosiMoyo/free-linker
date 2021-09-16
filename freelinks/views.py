@@ -10,19 +10,18 @@ def HomeView(request):
 
 def LinkProjectView(request, projects):
     project_links = Link.objects.filter(project__slug=projects)
+    my_project = LinkProject.objects.get(project_name=projects)
     form = LinkCreateForm()
     
     if request.method == "POST":
         form = LinkCreateForm(request.POST)
         if form.is_valid():
-            print(form.cleaned_data["project"])
-            form.save(commit=False)
-            form.cleaned_data["project"] = projects
-            print(form.cleaned_data["project"])
+            my_form = form.save(commit=False)
+            my_form.project = my_project
+            
             # TODO BUG the form is not updating the project field
-            form.save()
-            print(form.cleaned_data)
-        return redirect("/") 
+            my_form.save()
+        return redirect("/projects") 
     
     context = {
         "project": projects,
