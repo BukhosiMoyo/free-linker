@@ -44,8 +44,8 @@ INSTALLED_APPS = [
     'allauth.account',
     
     #Local apps
-    'freelinks.apps.FreelinksConfig',
     'users.apps.UsersConfig',
+    'freelinks.apps.FreelinksConfig',
     
 ]
 
