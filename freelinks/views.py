@@ -74,7 +74,7 @@ def LinkUpdateView(request, projects, pk):
 
 def ProjectListView(request):
     projects = LinkProject.objects.all()
-    form = ProjectCreateForm()
+    
     
     if request.method == 'POST':
         form = ProjectCreateForm(request.POST)
@@ -86,7 +86,60 @@ def ProjectListView(request):
     
     context = {
         'projects': projects,
-        "form":form
         }
     
     return render(request, "freelinks/project-list.html", context)
+
+
+def ProjectCreateView(request):
+    """"Create a Project"""
+    form = ProjectCreateForm()
+    
+    if request.method == 'POST':
+        form = ProjectCreateForm(request.POST)
+        if form.is_valid():
+            my_form = form.save(commit=False)
+            my_form.slug = my_form.project_name     
+            my_form.save()
+        return redirect("/projects")
+    
+    context = {
+        "form":form
+        }
+    
+    return render(request, "freelinks/project-create.html", context)
+
+
+def ProjectUpdateView(request, projects):
+    my_project = LinkProject.objects.get(project_name=projects)
+    """"Project Update"""
+    form = ProjectCreateForm(instance=my_project)
+    
+    if request.method == 'POST':
+        form = ProjectCreateForm(request.POST, instance=my_project)
+        if form.is_valid():
+            my_form = form.save(commit=False)
+            my_form.slug = my_form.project_name     
+            my_form.save()
+        return redirect("/projects")
+    
+    context = {
+        "form":form
+        }
+    
+    return render(request, "freelinks/project-update.html", context)
+
+
+def ProjectDeleteView(request, projects):
+    my_project = LinkProject.objects.get(project_name=projects)
+    """"Project Update"""
+    
+    if request.method == 'POST':
+        my_project.delete()
+        return redirect("/projects")
+    
+    context = {
+        "my_project": my_project
+        }
+    
+    return render(request, "freelinks/project-delete.html", context)
