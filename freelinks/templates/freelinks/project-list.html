@@ -6,18 +6,16 @@ Project List
 
 {% block content %}
 
+    <a href="{% url "project-create" %}">Create Project</a>
+
     <ul>
         {% for p in projects %}
         <li>
-            <a href="{% url "projects" p.slug %}">{{p.project_name}}</a>
+            <a href="{% url "projects" p.slug %}">{{p.project_name}}</a> --
+            <a href="{% url "project-update" p.slug %}">Update</a> | 
+            <a href="{% url "project-delete" p.slug %}">Delete</a>
         </li>
         {% endfor %}
     </ul>
 
-    <form action="" method="post">
-        {% csrf_token %}
-        {{form.as_p}}
-
-        <input type="submit" value="submit">
-    </form>
 {% endblock content %}
