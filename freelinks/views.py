@@ -43,7 +43,6 @@ def LinkCreateView(request, projects):
     return render(request, "freelinks/link-create.html", context)
 
 
-
 def LinkUpdateView(request, projects, pk):
     """Link Update"""
     my_project = LinkProject.objects.get(project_name=projects)
@@ -67,9 +66,6 @@ def LinkUpdateView(request, projects, pk):
     }
     
     return render(request, "freelinks/link-create.html", context)
-
-
-
 
 
 def ProjectListView(request):
@@ -132,7 +128,7 @@ def ProjectUpdateView(request, projects):
 
 def ProjectDeleteView(request, projects):
     my_project = LinkProject.objects.get(project_name=projects)
-    """"Project Update"""
+    """"Project Delete"""
     
     if request.method == 'POST':
         my_project.delete()

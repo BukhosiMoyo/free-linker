@@ -8,7 +8,7 @@ class LinkCreateForm(forms.ModelForm):
         model = Link
         fields = ('name', 'link')
         
-        
+     
             
 class ProjectCreateForm(forms.ModelForm):
     

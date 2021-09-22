@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     #Third party apps
     'allauth',
     'allauth.account',
+    'tailwind',
+    'theme',
     
     #Local apps
     'users.apps.UsersConfig',
@@ -57,6 +59,12 @@ AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
     'allauth.account.auth_backends.AuthenticationBackend',
 )
+
+# Tailwind  App name Configuration
+TAILWIND_APP_NAME = 'theme'
+INTERNAL_IP = [
+    '127.0.0.1',
+]
 
 # Email Backend
 
