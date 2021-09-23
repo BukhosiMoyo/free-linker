@@ -1,3 +1,3 @@
-# This is a free linker app for your Socoal accounts.
+# This is a free verion of linktree.
 
-## Thi can be added to your Instagram, twitter, etc...
+* its mainly for extending links on your Social Accounts like Instagram, twitter and more
