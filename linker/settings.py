@@ -60,11 +60,16 @@ AUTHENTICATION_BACKENDS = (
     'allauth.account.auth_backends.AuthenticationBackend',
 )
 
+
+
 # Tailwind  App name Configuration
 TAILWIND_APP_NAME = 'theme'
 INTERNAL_IP = [
     '127.0.0.1',
 ]
+
+ACCOUNT_AUTHENTICATION_METHOD="username_email"
+ACCOUNT_EMAIL_REQUIRED =True
 
 # Email Backend
 
