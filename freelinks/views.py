@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect
 from .models import Link, LinkProject
 from .forms import LinkCreateForm, ProjectCreateForm
 
+from django.utils.text import slugify   # Importing this to be able to slugify from view.py
+
 
 def HomeView(request):
     return render(request, "freelinks/home.html")
@@ -22,7 +24,7 @@ def LinkProjectView(request, projects):
 
 def LinkCreateView(request, projects):
     """Link Create"""
-    my_project = LinkProject.objects.get(project_name=projects)
+    my_project = LinkProject.objects.get(slug=projects) # the url contains the slug not the project name itself, so we have get the Link Project from the database using the slug
     project_links = LinkProject.objects.get(slug=projects)
     form = LinkCreateForm()
     
@@ -99,7 +101,7 @@ def ProjectCreateView(request):
         form = ProjectCreateForm(request.POST)
         if form.is_valid():
             my_form = form.save(commit=False)
-            my_form.slug = my_form.project_name     
+            my_form.slug = slugify(my_form.project_name )     
             my_form.save()
         return redirect("/projects")
     
@@ -109,9 +111,11 @@ def ProjectCreateView(request):
     
     return render(request, "freelinks/project-create.html", context)
 
+# In the admin panel slugs are auto generated for every Link Project created,to update it we need to create a new slug for the updated  Link Project 
+
 
 def ProjectUpdateView(request, projects):
-    my_project = LinkProject.objects.get(project_name=projects)
+    my_project = LinkProject.objects.get(slug=projects)
     """"Project Update"""
     form = ProjectCreateForm(instance=my_project)
     
@@ -119,7 +123,7 @@ def ProjectUpdateView(request, projects):
         form = ProjectCreateForm(request.POST, instance=my_project)
         if form.is_valid():
             my_form = form.save(commit=False)
-            my_form.slug = my_form.project_name     
+            my_form.slug = slugify(my_form.project_name)      
             my_form.save()
         return redirect("/projects")
     
