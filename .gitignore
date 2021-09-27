@@ -113,4 +113,8 @@ GitHub.sublime-settings
 !.vscode/tasks.json 
 !.vscode/launch.json 
 !.vscode/extensions.json 
+<<<<<<< HEAD
 .history
+=======
+.history
+>>>>>>> d97042b41c71a7139b73609ad8e0756750361692
