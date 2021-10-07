@@ -6,13 +6,35 @@ Create a new Project
 
 {% block content %}
 
-<p class="">Create Project</p>
 
-<form action="" method="post">
-    {% csrf_token %}
-    {{form.as_p}}
+{% include "navigation.html" %}
 
-    <input type="submit" value="submit">
-</form>
+    <div class="min-h-screen bg-gray-100 flex justify-center  px-6">
+        <div class="space-y-6 w-screen">
+        <h1 class="text-center mt-10 text-4xl font-bold">Create Project</h1>
+            <form action="" method="post">
+                {% csrf_token %}
+                <div class="flex items-center p-6 w-full justify-between bg-white rounded-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition duration-500">
+                    <div class="flex bg-gray-100 p-1 w-50 sm:w-72 space-x-4 rounded-lg">
+                        <input class="bg-gray-100 focus:outline-none w-52 sm:w-72 outline-none focus:ring-2 focus:ring-gray-100 h-8" autofocus type="text" name="project_name" id="id_project_name" placeholder="Project name...">
+                    </div>
+                    <div class="flex py-3 px-4 rounded-lg text-gray-500 font-semibold cursor-pointer">
+                        <a href="{% url "project-list" %}" class="flex bg-gray-100 mr-2 p-2 space-x-2 rounded-lg transform hover:bg-gray-200">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-green-500" width="46" height="46" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="18" y1="6" x2="6" y2="18"></line>
+                                <line x1="6" y1="6" x2="18" y2="18"></line>
+                            </svg>
+                        </a>
+                    
+                        <button type="submit" class="flex bg-gray-100 mr-2 p-2 space-x-2 rounded-lg transform hover:bg-gray-200">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-green-500" width="46" height="46" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
 
 {% endblock content %}

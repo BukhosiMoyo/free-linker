@@ -6,13 +6,15 @@ Projectas
 
 {% block content %}
 
+{% include "navigation.html" %}
+
 <p class="">My Links</p>
 
 <ul>
     {% for link in project_links %}
         <li>
-            {{link.name}} -
-            <a href="/{{pl}}/create/{{pk}}">Update</a>
+             
+            {{link.name|safe}}
         </li>
     {% endfor %}
 </ul>
